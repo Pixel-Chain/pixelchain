@@ -1,0 +1,72 @@
+@layer utilities {
+  .black {
+    @apply text-[#141619];
+  }
+  .darkblue {
+    @apply text-[#2C2E3A];
+  }
+  .navyblue {
+    @apply text-[#050A44];
+  }
+  .bg-lightblue {
+    @apply text-[#0A21C0];
+  }
+  .text-lightblue {
+    @apply text-[#0A21C0];
+  }
+  .text-offwhite {
+    @apply text-[#F1F1FB];
+  }
+
+  .lightgray {
+    @apply text-[#B3B4BD];
+  }
+  
+  .flex-between {
+    @apply flex justify-between items-center;
+  }
+
+  .section_container {
+    @apply px-6 py-10 max-w-7xl mx-auto;
+  }
+
+  .text-30-extrabold {
+    @apply text-[30px] font-extrabold;
+  }
+
+  .text-30-bold {
+    @apply text-[30px] font-bold;
+  }
+
+  .text-30-semibold {
+    @apply font-semibold text-[30px];
+  }
+
+  .text-26-semibold {
+    @apply font-semibold text-[26px];
+  }
+
+  .text-24-black {
+    @apply text-[24px] font-black;
+  }
+
+  .text-20-medium {
+    @apply font-medium text-[20px];
+  }
+
+  .text-16-medium {
+    @apply font-medium text-[16px];
+  }
+
+  .text-14-normal {
+    @apply font-normal text-sm;
+  }
+
+  .heading {
+    @apply font-sans font-black sm:text-[40px] sm:leading-[64px] text-[36px] leading-[46px];
+  }
+
+  .sub-heading {
+    @apply font-medium text-[20px] break-words;
+  }
+}
