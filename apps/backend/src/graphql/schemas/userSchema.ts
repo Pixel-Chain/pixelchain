@@ -1,53 +1,57 @@
+// graphql/schema/userSchema.ts
 import {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLInt,
   GraphQLString,
+  type GraphQLFieldConfigMap,
 } from "graphql";
 import { queryResolvers, mutationResolvers } from "../resolvers/userResolvers.js";
 
 const UserType = new GraphQLObjectType({
   name: "User",
   fields: () => ({
-    id: { type: GraphQLNonNull(GraphQLInt) },
-    name: { type: GraphQLNonNull(GraphQLString) },
-    email: { type: GraphQLNonNull(GraphQLString) },
+    id: { type: new GraphQLNonNull(GraphQLString) },
+    name: { type: new GraphQLNonNull(GraphQLString) },
+    email: { type: new GraphQLNonNull(GraphQLString) },
     createdAt: { type: GraphQLString },
   }),
 });
 
 const RootQuery = new GraphQLObjectType({
   name: "Query",
-  fields: {
+  fields: (): GraphQLFieldConfigMap<unknown, any> => ({
     users: {
-      type: GraphQLList(UserType),
+      type: new GraphQLList(UserType),
       resolve: queryResolvers.users,
     },
     user: {
       type: UserType,
-      args: { id: { type: GraphQLNonNull(GraphQLInt) } },
-      resolve: queryResolvers.user,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve: queryResolvers.user as any, // allow specific args internally
     },
-  },
+  }),
 });
 
 const RootMutation = new GraphQLObjectType({
   name: "Mutation",
-  fields: {
+  fields: (): GraphQLFieldConfigMap<unknown, any> => ({
     createUser: {
       type: UserType,
       args: {
-        name: { type: GraphQLNonNull(GraphQLString) },
-        email: { type: GraphQLNonNull(GraphQLString) },
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
       },
-      resolve: mutationResolvers.createUser,
+      resolve: mutationResolvers.createUser as any,
     },
-  },
+  }),
 });
 
-export const schema: GraphQLSchema = new GraphQLSchema({
+export const schema = new GraphQLSchema({
   query: RootQuery,
   mutation: RootMutation,
 });
